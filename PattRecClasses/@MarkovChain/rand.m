@@ -1,4 +1,5 @@
 function S=rand(mc,T)
+
 %S=rand(mc,T) returns a random state sequence from given MarkovChain object.
 %
 %Input:
@@ -18,13 +19,16 @@ function S=rand(mc,T)
 %   length(S) <= T
 %
 %---------------------------------------------
-%Code Authors:
+%Code Authors: Kamil Hakim, Sara
 %---------------------------------------------
 
 S=zeros(1,T);%space for resulting row vector
 nS=mc.nStates;
 
-error('Method not yet implemented');
-%continue code from here, and erase the error message........
+currentState = rand(DiscreteD(mc.InitalProb), 1);
 
+for i=1:T
+    if(Transition(currentState,currentState) == 1)
+    end
 
+end
