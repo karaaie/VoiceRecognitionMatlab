@@ -10,7 +10,7 @@ function R=rand(pD,nData)
 %   (size(R)= [1, nData]
 %
 %----------------------------------------------------
-%Code Authors: Kamil Hakim, Sara
+%Code Authors: Kamil Hakim, Sara Anild
 %----------------------------------------------------
 
 if numel(pD)>1
@@ -32,7 +32,6 @@ end
 R = retVec;
 
 
-    %debugged, works as expected.
     function normalized=ProbMassNormalizer(probMassVector)
         normalized = probMassVector/sum(probMassVector);
     end

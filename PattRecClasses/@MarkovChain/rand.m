@@ -19,16 +19,19 @@ function S=rand(mc,T)
 %   length(S) <= T
 %
 %---------------------------------------------
-%Code Authors: Kamil Hakim, Sara
+%Code Authors: Kamil Hakim, Sara Anild
 %---------------------------------------------
 
-S=zeros(1,T);%space for resulting row vector
-nS=mc.nStates;
+%S=zeros(1,T);%space for resulting row vector
 
-currentState = rand(DiscreteD(mc.InitalProb), 1);
-
+currentState = rand(DiscreteD(mc.InitialProb), 1);
+S = [];
 for i=1:T
-    if(Transition(currentState,currentState) == 1)
+    %terminate if we end up in a state that is considered an end state.
+    if(currentState == (mc.nStates+1))
+        break
     end
-
+    
+    S = [S currentState];
+    currentState =  rand(DiscreteD(mc.TransitionProb(currentState,:)),1);
 end
