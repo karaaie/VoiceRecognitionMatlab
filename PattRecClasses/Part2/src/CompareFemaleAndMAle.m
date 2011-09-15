@@ -1,24 +1,29 @@
 
-subplot(2,2,1);
-[yFemale, fsFemale,nbitsFemale]  = wavread('female.wav');
-[spectgramFemale,fFemale,tFemale] = GetSpeechFeatures(yFemale,fsFemale,0.030);
-imagesc(tFemale,fFemale,log(spectgramFemale));
-colorbar
-axis xy
+ceptralBands = 13;
 
-subplot(2,2,2);
-[yMusic, fsMusic,nbitsMusic]  = wavread('music.wav');
-[spectgramMusic,fMusic,tMusic] = GetSpeechFeatures(yMusic,fsMusic,0.030); 
-imagesc(tMusic,fMusic,log(spectgramMusic));
-colorbar
-axis xy
+%sprectrogram female
+subplot(3,2,1);
+plotSpectrogram('female.wav');
+title('Female spectrogram')
 
+%spectrogram music
+subplot(3,2,2);
+plotCeptogram('female.wav',ceptralBands)
+title('Female ceptogram');
 
-subplot(2,2,3);
-[yFemale, fsFemale,nbitsFemale]  = wavread('female.wav');
-[mfccsFemale] = GetSpeechFeatures(yFemale,fsFemale,0.030,30);
-imagesc(tFemale,fFemale,log(mfccsFemale));
-colorbar
-axis xy
+subplot(3,2,3)
+plotSpectrogram('male.wav');
+title('Male spectrogram');
 
 
+subplot(3,2,4)
+plotCeptogram('male.wav',ceptralBands);
+title('Male ceptrogram');
+
+subplot(3,2,5)
+plotSpectrogram('music.wav');
+title('Music spectrogram');
+
+subplot(3,2,6)
+plotCeptogram('music.wav',ceptralBands);
+title('Music ceptogram');
