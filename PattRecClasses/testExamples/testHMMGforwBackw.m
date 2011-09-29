@@ -1,4 +1,4 @@
-%test training of a discrete-valued HMM
+j%test training of a discrete-valued HMM
 %similar to test example in the PattRec course project, year 2008.
 %
 %Arne Leijon, 2009-07-22
@@ -16,8 +16,8 @@ x =[-0.2 2.6 1.3 ]
 T=length(x);
 % [alfaHat,c]=forward(h,z);
 % betaHat=backward(h,z);
-pX=prob(pD,x);
+pX=prob(pD,x)
 [alfaHat,c]=forward(mc,pX)
-betaHat=backward(mc,pX,c)
-gamma=alfaHat.*betaHat.*repmat(c(1:T),nStates,1)
-lPHMM=logprob(h,x)
+%betaHat=backward(mc,pX,c)
+%gamma=alfaHat.*betaHat.*repmat(c(1:T),nStates,1)
+lPHMM=logprob([h h h],x)

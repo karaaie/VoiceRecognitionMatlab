@@ -26,7 +26,7 @@
 %Code Authors:
 %----------------------------------------------------
 
-function logP=logprob(hmm,x)
+function logP=logprob(hmm,x) 
 hmmSize=size(hmm);%size of hmm array
 T=size(x,2);%number of vector samples in observed sequence
 logP=zeros(hmmSize);%space for result
@@ -35,6 +35,14 @@ for i=1:numel(hmm)%for all HMM objects
     %regardless of hmmSize, even with multi-dimensional array.
     %
     %logP(i)= result for hmm(i)
-    %continue coding from here, and delete the error message.
-    error('Not yet implemented');
+  
+    [pX,scaleFactors]=prob(hmm(i).OutputDistr,x)
+    disp(scaleFactors)
+    [alfaHat,c] = forward(hmm(i).StateGen,pX)
+    
+    for j=1:length(c)
+        logP(i) = logP(i) + log(c(j));
+    end
+    logP(i) = logP(i) + sum(scaleFactors);
+    
 end;
