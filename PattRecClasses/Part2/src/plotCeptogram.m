@@ -3,7 +3,7 @@ function plotCeptogram(filename, ceptralBands )
 %   Detailed explanation goes here
 
 [y, fs,nbits]  = wavread(filename);
-[mfccs] = GetSpeechFeatures(y,fs,0.030,ceptralBands);
+[mfccs] = GetSpeechFeatures(y,fs,0.030,ceptralBands)
 [spectgram,f,t] = GetSpeechFeatures(y,fs,0.030);
 
 %normalize
