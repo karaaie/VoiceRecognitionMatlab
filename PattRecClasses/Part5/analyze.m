@@ -1,15 +1,16 @@
-load('hmms.mat')
+function [lPMatrix] = Analyze( directory )
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes here
+cd(directory);
+load('hmms.mat');
 
-rootDirectory  = 'C:\Users\Kamil\Programmering\VoiceRecognition\PattRecClasses\database'
-cd(rootDirectory);
-cd('Basement');
+lPMatrix = [];
+for i=13:15
+    [y,fs,nbits] = wavread([int2str(i) '.wav']);
+    mfccs = getSpeechFeatures(y,fs,0.030,13);   
+    mfccsNorm = NormalizeMfccs(mfccs,13);
+    lPMatrix = [lPMatrix; logprob(trainedHmms,mfccsNorm)];
+end
 
-[y,fs,nbits] = wavread('13.wav')
-mfccs = getSpeechFeatures(y,fs,0.030,13);
-mfccsNorm = NormalizeMfccs(mfccs,13);
+end
 
-
-
-ans = logprob(trainedHmms,mfccs);
-
-disp(trainedHmms)
